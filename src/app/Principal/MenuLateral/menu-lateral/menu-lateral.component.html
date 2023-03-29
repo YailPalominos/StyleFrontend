@@ -1,0 +1,31 @@
+<mat-drawer-container class="example-container" autosize >
+    <mat-drawer #drawer class="example-sidenav" mode="side" >
+
+    <div class="example-sidenav-content">
+
+
+        <div class="example-sidenav">
+            <mat-icon>person_filled</mat-icon>
+            <h3>Usuarios</h3>
+        </div>
+
+        <div class="example-sidenav">
+            <mat-icon>wine_bar</mat-icon>
+            <h3>Torneo</h3>
+        </div>
+
+    
+    
+    </div>
+    </mat-drawer>
+
+
+
+<!-- 
+<app-tabla-generica></app-tabla-generica> -->
+
+<!-- (aInformacion)="MostrarOcultarBarraLateral()"  -->
+
+<app-grafica-barras [cambio]="MostrarOcultarBarraLateral()"></app-grafica-barras>
+
+
