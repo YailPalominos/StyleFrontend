@@ -1,25 +1,77 @@
 
 <mat-toolbar style="background-color: black;">
-<!--   
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-      <mat-icon style="color:white">menu</mat-icon>
-    </button>
-    <span>Style</span>
-    <span class="example-spacer"></span> -->
 
-  <!-- 
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-      <mat-icon style="color:white">person_filled</mat-icon>
-    <h1>Braulio Yail Palominos Patiño</h1> 
-    </button>
-    <span>Style</span>
+
+
+    <span style="color: white;"><b>Style</b></span>
     <span class="example-spacer"></span>
--->
-    
+  
 
-    <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <button mat-icon-button  (click)="IrAInicio()" matTooltip="Inicio">
+      <mat-icon style="color:white">home</mat-icon>
+    </button>
+
+    
+    <button mat-icon-button  (click)="IrTorneos()" matTooltip="Torneos">
+      <mat-icon style="color:white">mic_external_on</mat-icon>
+    </button>
+
+    <button mat-icon-button (click)="IrAUsuarios()" matTooltip="Usuarios">
+      <mat-icon style="color:white">person_filled</mat-icon>
+    </button>
+      
+
+    <button mat-icon-button  (click)="IrAVotar()" matTooltip="Votar">
+      <mat-icon style="color:white">pan_tool</mat-icon>
+    </button>
+
+
+
+      
+
+    <span style="width: 400px; height: 75px; display: flex; 
+    align-items: center; justify-content: space-around; margin-right:100px; margin-left: 50px;">
+    <h3  style="color:white; font-size: 20px; text-align: center; padding-top: 15px;"> Braulio Yail Palominos Patiño</h3>
+
+    <button mat-icon-button matTooltip="Amigos" [matMenuTriggerFor]="menu2">
+      <mat-icon  matBadge="1"  matBadgeColor="warn" style="color:white">diversity_3</mat-icon>
+    </button> 
+
+
+    <mat-menu #menu2="matMenu">
+
+      <button mat-menu-item>
+        <mat-icon>person_filled</mat-icon>
+        <span>Jazmin</span>
+      </button>
+
+      
+  
+
+    </mat-menu>
+
+    <button mat-icon-button matTooltip="Notificaciones"[matMenuTriggerFor]="menu">
+      <mat-icon  matBadge="2"  matBadgeColor="warn" style="color:white">notifications</mat-icon>
+    </button> 
+    
+    <mat-menu #menu="matMenu">
+
+      <button mat-menu-item>
+        <mat-icon>mic_external_on</mat-icon>
+        <span>Primer torneo de freestyle</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>mic_external_on</mat-icon>
+        <span>Master of fire</span>
+      </button>
+      
+    </mat-menu>
+
+  </span>
+
+    <button mat-icon-button matTooltip="Cerrar sesión">
       <mat-icon style="color:white">logout</mat-icon>
-    </button> -->
+    </button> 
 
 
   </mat-toolbar>

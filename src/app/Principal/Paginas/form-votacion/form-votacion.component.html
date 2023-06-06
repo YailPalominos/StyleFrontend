@@ -1,0 +1,81 @@
+
+<h1 mat-dialog-title>{{AccionFormulario}}</h1>
+<form [formGroup]="Formulario" (ngSubmit)="Comprobar()" >
+
+<span style="width: 100%; padding-top: 25px; border-style: solid;">
+
+
+
+<mat-form-field style="width:8%;" appearance="outline">
+    <mat-label>P1</mat-label>
+    <input matInput formControlName="p1" type="number" >
+</mat-form-field>
+
+<mat-form-field style="width:8%;" appearance="outline">
+    <mat-label>P2</mat-label>
+    <input matInput formControlName="p2" type="number" >
+</mat-form-field>
+
+
+<mat-form-field style="width:8%;" appearance="outline">
+    <mat-label>P3</mat-label>
+    <input matInput formControlName="p3" type="number" >
+</mat-form-field>
+
+
+<mat-form-field style="width:8%;" appearance="outline">
+    <mat-label>P4</mat-label>
+    <input matInput formControlName="p4" type="number" >
+</mat-form-field>
+
+
+
+<mat-form-field style="width:8%;" appearance="outline">
+    <mat-label>P5</mat-label>
+    <input matInput formControlName="p5" type="number" >
+</mat-form-field>
+
+<mat-form-field style="width:8%;" appearance="outline">
+    <mat-label>P6</mat-label>
+    <input matInput formControlName="p6" type="number" >
+</mat-form-field>
+
+<mat-form-field style="width:9.5%;" appearance="outline">
+    <mat-label>Flow</mat-label>
+    <input matInput formControlName="flow" type="number" >
+</mat-form-field>
+
+<mat-form-field style="width:9.5%;" appearance="outline">
+    <mat-label>Tec</mat-label>
+    <input matInput formControlName="pEcena" type="number" >
+</mat-form-field>
+
+<mat-form-field style="width:9.5%;" appearance="outline">
+    <mat-label>P.E</mat-label>
+    <input matInput formControlName="tecnicas" type="number" >
+</mat-form-field>
+
+
+</span>
+
+
+
+<span style="width:100%;"></span>
+
+<span style="padding-top: 10px;">
+<button mat-fab color="primary"  type="button" (click)="VerTotal()" >
+    <mat-icon>visibility</mat-icon>
+</button>
+</span>
+
+<h1 mat-dialog-title><b>Total: </b>{{Total}}</h1>
+
+
+
+<span  mat-dialog-actions style="width:100%; padding-bottom: 10px;" align="center">
+    <button mat-raised-button  (click)="CerrarFormulario()" >Salir</button>
+    <!-- <button mat-raised-button type="submit" color="primary">{{AccionFormularioBoton}}</button> -->
+</span>
+
+
+</form>

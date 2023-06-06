@@ -1,8 +1,11 @@
 
 .Contenedor{
-    // height: 210px;
-    height: 500px;
+ 
     display: flex;
     justify-content: center;
     align-items: center;
+}
+canvas{
+    margin-top: 25px;
+    width: 900px;
 }

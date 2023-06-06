@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 
+
 @Injectable({
   providedIn: 'root'
 })
-export class UsuarioService {
+export class TorneoService {
 
-private sUrl:string="https://localhost:7241/Usuarios/"
+
+  private sUrl:string="https://localhost:7241/Torneos/"
 
   constructor(private http: HttpClient) { }
 
@@ -25,5 +27,4 @@ private sUrl:string="https://localhost:7241/Usuarios/"
   public delete(nId:number){
     return this.http.delete(this.sUrl+"Delete/"+nId);
   }
-
 }

@@ -1,0 +1,81 @@
+<h1 mat-dialog-title>{{AccionFormulario}}</h1>
+<form [formGroup]="Formulario" (ngSubmit)="Comprobar()" >
+
+    <mat-form-field style="width:30%;" appearance="outline">
+        <mat-label>Nombres</mat-label>
+        <input matInput formControlName="nombres" oninput="this.value=this.value.toUpperCase()" >
+    </mat-form-field>
+
+    <mat-form-field style="width:30%;" appearance="outline">
+        <mat-label>Apellidos</mat-label>
+        <input matInput formControlName="apellidos" oninput="this.value=this.value.toUpperCase()" >
+    </mat-form-field>
+
+    <mat-form-field style="width:30%;" appearance="outline">
+        <mat-label>Usuario</mat-label>
+        <input matInput formControlName="nombreUsuario">
+    </mat-form-field>
+
+
+    <mat-form-field style="width:25%;" appearance="outline">
+        <mat-label>Sexo</mat-label>
+        <mat-select formControlName="sexo">
+            <mat-option value="H">Hombre</mat-option>
+            <mat-option value="M">Mujer</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+
+    <mat-form-field style="width:35%;" appearance="outline">
+        <mat-label>Correo</mat-label>
+        <input matInput formControlName="correoElectronico" >
+    </mat-form-field>
+
+
+    <mat-form-field style="width:30%;" appearance="outline">
+        <mat-label>País</mat-label>
+        <mat-select formControlName="pais">
+            <mat-option value="MÉXICO">México</mat-option>
+            <mat-option value="ARGENTINA">Argentina</mat-option>
+            <mat-option value="GUATEMALA">Guatemala</mat-option>
+        
+
+        </mat-select>
+    </mat-form-field>
+
+
+    <mat-form-field style="width:30%;" appearance="outline">
+        <mat-label>Contraseña</mat-label>
+        <input matInput formControlName="contraseña" [type]="Oculto1 ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="Oculto1 = !Oculto1" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="Oculto1">
+            <mat-icon>{{Oculto1 ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+    </mat-form-field>
+
+
+
+    <mat-form-field style="width:30%;" appearance="outline">
+        <mat-label>Confirmar</mat-label>
+        <input matInput formControlName="confimar" [type]="Oculto2 ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="Oculto2 = !Oculto2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="Oculto2">
+            <mat-icon>{{Oculto2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+    </mat-form-field>
+
+
+    <mat-form-field  style="width:30%;"  appearance="outline">
+        <mat-label>Fecha de nacimiento</mat-label>
+        <input matInput formControlName="fechaNacimiento" [matDatepicker]="picker">
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+
+    <span  mat-dialog-actions style="width:100%; padding-bottom: 10px;" align="end">
+    <button mat-raised-button  (click)="CerrarFormulario()" >Volver</button>
+    <button mat-raised-button type="submit" color="primary">{{AccionFormularioBoton}}</button>
+
+</span>
+
+</form>

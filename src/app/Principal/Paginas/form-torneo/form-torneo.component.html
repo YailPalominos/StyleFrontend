@@ -1,0 +1,167 @@
+<h1 mat-dialog-title>{{AccionFormulario}}</h1>
+<form [formGroup]="Formulario" (ngSubmit)="Comprobar()">
+
+
+    <mat-tab-group color="primary" backgroundColor="primary" style="width: 100%;">
+    
+        <mat-tab label="Torneo">
+
+
+    <span style="width: 100%; display: flex;
+    flex-wrap: wrap; padding-top: 15px;">
+
+
+
+
+    
+    <mat-form-field style="width:46%;" appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="nombre">
+    </mat-form-field>
+
+    <mat-form-field style="width:22%;" appearance="outline">
+        <mat-label>Inicio vigencia</mat-label>
+        <input matInput formControlName="fechaInicioVigencia" [matDatepicker]="picker0">
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker0"></mat-datepicker-toggle>
+        <mat-datepicker #picker0></mat-datepicker>
+    </mat-form-field>
+
+
+    <mat-form-field style="width:22%;" appearance="outline">
+        <mat-label>Final vigencia</mat-label>
+        <input matInput formControlName="fechaFinalVigencia" [matDatepicker]="picker1">
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field style="width:15%;" appearance="outline">
+        <mat-label>Tipo</mat-label>
+        <mat-select formControlName="tipo">
+            <mat-option value="D">Diagrama</mat-option>
+            <mat-option value="P">Puntos</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+
+    <mat-form-field style="width:15%;" appearance="outline">
+        <mat-label>Uso</mat-label>
+        <mat-select formControlName="uso">
+            <mat-option value="PR">Privado</mat-option>
+            <mat-option value="PU">Publico</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+
+    <mat-form-field style="width:30%;" appearance="outline">
+        <mat-label>Acomodo</mat-label>
+        <mat-select formControlName="acomodo">
+            <mat-option value="A">Aleatorio</mat-option>
+            <mat-option value="EA">Eleccion aleatoria</mat-option>
+            <mat-option value="SA">Selección aleatoria</mat-option>
+            <mat-option value="S">Selección</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field style="width:27.5%;" appearance="outline">
+        <mat-label>Estado</mat-label>
+        <mat-select formControlName="estado">
+            <mat-option value="R">Registrando</mat-option>
+            <mat-option value="C">Compitiendo</mat-option>
+            <mat-option value="F">Finalizando</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+
+    <mat-form-field style="width:95%;" appearance="outline">
+        <mat-label>Descrición</mat-label>
+        <textarea formControlName="descripcion" matInput placeholder="Descripción del torneo"></textarea>
+    </mat-form-field>
+
+</span>
+
+    <span *ngIf="this.data.Id!=0" style="width:100%;padding-top: 15px;">
+        
+        <h1 style="padding: 0;margin: 0;" mat-dialog-title>Usuarios</h1>
+
+        <span style=" display: flex;
+        flex-wrap: wrap;">
+
+        <mat-card style="width:60%; padding: 0; margin: 0;">
+            <mat-card-content align="center" >
+            <b>{{ Formulario.controls['usuarios'].value}}</b>
+            </mat-card-content>
+        </mat-card>
+
+
+    <mat-form-field style="width:28%;padding-top: 15px;" appearance="outline">
+        <mat-label>Usuario</mat-label>
+        <input type="text" placeholder="Usuario" matInput formControlName="usuario" [matAutocomplete]="auto">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option *ngFor="let usuario of UsuariosFiltrados | async" [value]="usuario.nombreUsuario">
+                {{usuario.nombreUsuario}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+
+
+    <span style="margin-top: 10px;">
+        <button type="button"  mat-fab color="primary"  (click)="AgregarUsuario()">
+            <mat-icon>add</mat-icon>
+        </button>
+    </span>
+
+</span>
+</span>
+
+    <span mat-dialog-actions style="width:100%; padding-bottom: 10px;" align="end">
+        <button mat-raised-button (click)="CerrarFormulario()">Volver</button>
+        <button mat-raised-button type="submit" color="primary">{{AccionFormularioBoton}}</button>
+
+    </span>
+
+
+</mat-tab>
+
+    <mat-tab *ngIf="this.data.Id!=0" label="Batallas">
+
+    <span style="width: 100%; display: flex;
+    flex-wrap: wrap; padding-top: 15px;">
+
+
+<div  class="Contenedor"  *ngFor="let batalla of Batallas;" >
+
+<h1 mat-dialog-title><b>Id:&nbsp;</b> {{batalla.id}}&nbsp;
+    <b>FreeStyler1:&nbsp;</b><span style="color: blue;">{{GetUsuario(batalla.f1)}}</span> &nbsp; <b>FreeStyler2:&nbsp;</b>&nbsp;<span style="color: red;">{{GetUsuario(batalla.f2)}}</span>
+    <b>Replicas:&nbsp;</b>&nbsp;{{batalla.replicas}} <b>Ganador:&nbsp;</b>&nbsp;{{GetUsuario(batalla.ganador)}}
+</h1>
+
+</div>
+
+<span *ngIf="this.Batallas.length==0" style="width: 100%; display: flex; justify-content: center; border: 1px solid black;">
+    <h1 mat-dialog-title><b>No hay batallas aun</b></h1>
+</span>
+
+
+    <span style="width: 100%; padding-top: 10px; padding-bottom: 10px;  display: flex; justify-content: center">
+        <button type="button"  mat-fab color="primary"  matTooltip="NuevaBatalla" (click)="CrearBatalla()">
+        <mat-icon>add</mat-icon>
+    </button>
+
+
+
+
+
+
+
+</span>
+
+
+
+    </span>
+    </mat-tab>
+
+</mat-tab-group>
+
+</form>

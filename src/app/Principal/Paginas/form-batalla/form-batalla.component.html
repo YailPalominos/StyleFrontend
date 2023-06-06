@@ -1,0 +1,44 @@
+<h1 mat-dialog-title>{{AccionFormulario}}</h1>
+<form [formGroup]="Formulario" (ngSubmit)="Comprobar()" >
+
+
+    <mat-form-field style="width:25%;" appearance="outline">
+        <mat-label>FreeStyler1</mat-label>
+        <mat-select formControlName="f1">
+            <mat-option *ngFor="let usuario of OpcionesUsuarios" [value]="usuario.id" (selectionChange)="QuitarUsuario(usuario.id)">{{usuario.nombreUsuario}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+
+    <mat-form-field style="width:25%;" appearance="outline">
+        <mat-label>FreeStyler2</mat-label>
+        <mat-select formControlName="f2">
+            <mat-option *ngFor="let usuario of OpcionesUsuarios" [value]="usuario.id" (selectionChange)="QuitarUsuario(usuario.id)">{{usuario.nombreUsuario}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+
+    <mat-form-field style="width:15%;" appearance="outline">
+        <mat-label>Replicas</mat-label>
+        <input matInput formControlName="replicas" type="number" >
+    </mat-form-field>   
+
+
+    <mat-form-field style="width:25%;" appearance="outline">
+        <mat-label>Ganador</mat-label>
+        <mat-select formControlName="ganador">
+            <mat-option *ngFor="let usuario of OpcionesUsuarios" [value]="usuario.id" >{{usuario.nombreUsuario}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+
+
+
+
+    <span  mat-dialog-actions style="width:100%; padding-bottom: 10px;" align="end">
+    <button mat-raised-button  (click)="CerrarFormulario()" >Volver</button>
+    <button mat-raised-button type="submit" color="primary">{{AccionFormularioBoton}}</button>
+
+</span>
+
+</form>

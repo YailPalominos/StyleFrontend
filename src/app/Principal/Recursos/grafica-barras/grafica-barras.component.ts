@@ -1,15 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ChartConfiguration, ChartOptions } from 'chart.js';
- import { ChartDataset, ChartType } from 'chart.js';
-// import {  Label } from 'ng2-charts';
-// import {DataLabelsPlugin} from 'chartjs-plugin-datalabels';
-
-// import * as pluginDataLabels from 'chartjs-plugin-datalabels';
-
-import {Chart} from 'chart.js';
+import { ChartConfiguration } from 'chart.js';
+import {  ChartType } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-
-
+import { UsuarioService } from '../../Servicio/usuario.service';
+import { Usuario } from '../../Interfaz/usuario';
 
 
 @Component({
@@ -19,56 +13,70 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 })
 export class GraficaBarrasComponent {
 
-  title = 'ng2-charts-demo';
-
-
   barChartLegend = true;
   barChartPlugins = [ChartDataLabels];
 
+  public datos:number[]=[0,0,0,0,0];
+  public meses:string[]=[];
+
+  public Meses:any=[
+    
+    {num:1,mes:"Enero",usuarios:0},
+    {num:2,mes:"Febrero",usuarios:0},
+    {num:3,mes:"Marzo",usuarios:0},
+    {num:4,mes:"Abril",usuarios:0},
+    {num:5,mes:"Mayo",usuarios:0}]
+
 public barChartType: ChartType = 'bar';
 
-
-
-  barChartData: any[] = [
-    { data: [4, 32, 20,0,11], label:'Grafica', axis: 'y',     fill: false,
-    backgroundColor: ['rgb(255,0,0)','rgb(0,255,0)','rgb(0,0,255)','rgb(255,255,0)','rgb(0,255,255)','rgb(255,0,255)'] },
-  ];
-
-  barChartLabels: any[] = ['P1', 'P2', 'P3', 'P4', 'P5'];
-
-
-
-  // public barChartData: ChartConfiguration<'bar'>['data'] = {
-  //   labels: [ 'BYPP', 'RVLI', 'AVGZ', 'ALDT', 'MIXF', 'FVGL' ],
-  //   datasets: [
-  //     { data: [ 65, 59, 80, 81, 56, 55, 40 ], label: 'Incidentes' }
-  //     // { data: [ 28, 48, 40, 19, 86, 27, 90 ], label: 'Series B' }
-  //   ]
-  // };
-
-  // lineChartOptions = {
-  //   responsive: true,
-  // };
-
-
-    // public options: any = {
-    //   responsive: true,
-    //   plugins: {
-    //     datalabels: {
-    //       color: 'white',
-    //       display: false,
-    //       font: {
-    //         weight: 'bold'
-    //       },
-    //       formatter: Math.round
-    //     }
-    //   },
-
-    // return <Doughnut options={options} data={data}></Doughnut>
+constructor(private oSUsuario:UsuarioService) {}
   
+ngOnInit():void{
+  this.oSUsuario.getAll().subscribe((oRespuesta:any)=>{
+    
+    let Usuarios:Usuario[]=oRespuesta;
+
+    for (let i=0; i < Usuarios.length; i++){
+    
+      let fechaRegistro:Date=new Date(Usuarios[i].fechaRegistro)
+
+      for (let x=0; x < this.Meses.length; x++){
+
+        if(this.Meses[x].num==fechaRegistro.getUTCMonth()+1){
+          this.Meses[x].usuarios++;
+        }
+
+        this.datos[x]=parseInt(this.Meses[x].usuarios)
+        this.meses[x]=(this.Meses[x].mes)
+        
+      }
+
+      this.barChartData= [{ data: this.datos, label:'Usuarios registrados', axis: 'y',     fill: false,
+      backgroundColor: ['rgb(255,0,0)','rgb(0,255,0)','rgb(0,0,255)','rgb(255,255,0)','rgb(0,255,255)','rgb(255,0,255)'] }]
+
+      this.barChartLabels= this.meses;
+
+    }
+
+  });
+
+
+  
+}
+
+
+
+barChartData: any[] = [
+  { data: this.datos, label:'Usuarios registrados', axis: 'y',     fill: false,
+  backgroundColor: ['rgb(255,0,0)','rgb(0,255,0)','rgb(0,0,255)','rgb(255,255,0)','rgb(0,255,255)','rgb(255,0,255)'] },
+];
+
+barChartLabels: any[] = [];
+
+
   public barChartOptions: ChartConfiguration<'bar'>['options'] = {
     
-    responsive: true,
+    responsive: false,
       plugins: {
         datalabels: {
           color: 'white',
@@ -82,29 +90,7 @@ public barChartType: ChartType = 'bar';
       },
   };
   
-
-  
-
-  constructor() {
-  }
-
-
-  // Para emitir eventos atraves de componentes
-
-  @Input() cambio? :any;
-
-  @Output() aInformacion= new EventEmitter<any>();
-
-
-  public emitirCambio(){
-    this.cambio='Hola como estas';
-    this.aInformacion.emit(this.cambio);
-  }
-
 }
-
-// 6
-// 5.75
 
 
 

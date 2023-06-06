@@ -1,14 +1,13 @@
 export interface Usuario {
-        id: string;
+        id: number;
         nombres: string;
         apellidos: string;
-        usuario: string;
+        nombreUsuario: string;
         contraseña: string;
         pais: string;
-        estado: string;
         fechaNacimiento:Date;
-        avatar:string;
         amigos:string;
         fechaRegistro:Date;
         correoElectronico:string;
+        sexo:string;
 }

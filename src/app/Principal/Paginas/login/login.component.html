@@ -1,0 +1,23 @@
+<div>
+<span class="Contenedor">
+
+    <mat-form-field style="width: 100%; height: 25px; padding-top: 10%;" appearance="outline">
+        <mat-label>Usuario</mat-label>
+        <input matInput >
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%; height: 25px;"  appearance="outline">
+    <mat-label>Contraseña</mat-label>
+    <input matInput [type]="hide ? 'password' : 'text'">
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+    </mat-form-field>
+
+    <span style="width: 100%; height: 50px; display: flex; justify-content: center">
+    <button mat-raised-button style="width: 80%; height: 40px;" color="primary">Iniciar sesión</button>
+    </span>
+
+
+</span>
+</div>
